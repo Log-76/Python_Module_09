@@ -43,7 +43,7 @@ class AlienContact(BaseModel):
                 f"Message: {self.message_received}")
 
 
-def main():
+def main() -> None:
     print("Alien Contact Log Validation")
     print("========================================")
     print("Valid contact report:")

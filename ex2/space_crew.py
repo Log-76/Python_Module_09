@@ -42,3 +42,29 @@ class SpaceMission(BaseModel):
                             " experienced crew (5+ years)")
         if self.crew.is_active is False:
             raise Exception("All crew members must be active")
+
+
+def main() -> None:
+    print("Space Mission Crew Validation")
+    print("========================================")
+    print("Valid mission created:")
+    member = []
+    member.append(CrewMember("sc1", "Sarah Connor", "commander", 25,
+                             "Mission Command", 6))
+    member.append(CrewMember("js1", "John Smith", "lieutenant", 40,
+                             "Navigation", 6))
+    member.append(CrewMember("aj1", "Alice Johnson", "officer", 20,
+                             "Engineering", 6))
+    data = {
+        "mission_id": "M2024_MARS",
+        "mission_name": "Mars Colony Establishment",
+        "destination": "Mars",
+        "duration_days": 900,
+        "crew": 60,
+        "budget_millions": 2500.0}
+    try:
+        mission = SpaceMission(**data)
+        print("✅ Succès !")
+        mission.check_mission()
+    except Exception as e:
+        print(f"❌ Erreur : {e}")

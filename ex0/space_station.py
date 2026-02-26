@@ -21,7 +21,7 @@ class SpaceStation(BaseModel):
                 f"Status operationel: {self.is_operational}")
 
 
-def main():
+def main() -> None:
     print("Space Station Data Validation")
     print("========================================")
     print("Valid station created:")
