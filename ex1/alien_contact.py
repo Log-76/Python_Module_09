@@ -22,7 +22,7 @@ class AlienContact(BaseModel):
     is_verified: bool = Field(default=False)
 
     @model_validator(mode='after')
-    def check_valid(self) -> str:
+    def check_valid(self) -> None:
         if self.contact_id[0] != "A" or self.contact_id[1] != "C":
             raise Exception("Contact ID must start with 'AC' (Alien Contact)")
         if self.contact_type == "telepathic" and self.witness_count < 3:
@@ -32,7 +32,6 @@ class AlienContact(BaseModel):
         if self.signal_strength > 7 and self.message_received == " ":
             raise Exception("Strong signals (> 7.0) should include"
                             "received messages")
-        return self
 
     def get_info(self) -> str:
         return (f"Station {self.contact_id}\n"
