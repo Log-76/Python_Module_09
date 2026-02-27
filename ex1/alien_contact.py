@@ -32,14 +32,15 @@ class AlienContact(BaseModel):
         if self.signal_strength > 7 and self.message_received == " ":
             raise Exception("Strong signals (> 7.0) should include"
                             "received messages")
+        return self
 
     def get_info(self) -> str:
-        return (f"Station {self.contact_id}\n"
-                f"Nom: {self.contact_type}\n"
-                f"Crew: {self.location} people\n"
-                f"Power: {self.signal_strength}%\n"
-                f"Oxygen: {self.duration_minutes}%\n"
-                f"Status operationel: {self.witness_count}"
+        return (f"ID: {self.contact_id}\n"
+                f"Type {self.contact_type}\n"
+                f"Location: {self.location}\n"
+                f"Signal: {self.signal_strength}/10\n"
+                f"Duration: {self.duration_minutes}%\n"
+                f"Witnesses: {self.witness_count}\n"
                 f"Message: {self.message_received}")
 
 
