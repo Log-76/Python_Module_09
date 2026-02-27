@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, model_validator
 from datetime import datetime
 from enum import Enum
+from typing import Self
 
 
 class ContactType(str, Enum):
@@ -22,7 +23,7 @@ class AlienContact(BaseModel):
     is_verified: bool = Field(default=False)
 
     @model_validator(mode='after')
-    def check_valid(self) -> None:
+    def check_valid(self) -> Self:
         if self.contact_id[0] != "A" or self.contact_id[1] != "C":
             raise Exception("Contact ID must start with 'AC' (Alien Contact)")
         if self.contact_type == "telepathic" and self.witness_count < 3:
